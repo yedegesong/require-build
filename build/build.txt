@@ -1,0 +1,12 @@
+
+./controller/index/Index.js
+----------------
+lib/zepto.js
+lib/frozen.js
+lib/zepto.touchSwipe.js
+controller/index/Index.js
+
+./controller/detils/Index.js
+----------------
+lib/zepto.js
+controller/detils/Index.js

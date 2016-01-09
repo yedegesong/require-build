@@ -1,0 +1,161 @@
+{
+    "res": {
+        "build - 副本.js": {
+            "uri": "/build - 副本_6de52d2.js",
+            "type": "js"
+        },
+        "build.js": {
+            "uri": "/build_6de52d2.js",
+            "type": "js"
+        },
+        "build/app.js": {
+            "uri": "/build/app_758ba60.js",
+            "type": "js"
+        },
+        "build/controller/detils/Index.js": {
+            "uri": "/build/controller/detils/Index_1f93db7.js",
+            "type": "js"
+        },
+        "build/controller/index/Index.js": {
+            "uri": "/build/controller/index/Index_9747951.js",
+            "type": "js"
+        },
+        "build/lib/artTemplate/template-debug.js": {
+            "uri": "/build/lib/artTemplate/template-debug_cec9b3a.js",
+            "type": "js"
+        },
+        "build/lib/artTemplate/template-native-debug.js": {
+            "uri": "/build/lib/artTemplate/template-native-debug_b33b7a4.js",
+            "type": "js"
+        },
+        "build/lib/artTemplate/template-native.js": {
+            "uri": "/build/lib/artTemplate/template-native_c499d00.js",
+            "type": "js"
+        },
+        "build/lib/artTemplate/template.js": {
+            "uri": "/build/lib/artTemplate/template_dd622e5.js",
+            "type": "js"
+        },
+        "build/lib/frozen.js": {
+            "uri": "/build/lib/frozen_7c0b3e5.js",
+            "type": "js"
+        },
+        "build/lib/require.js": {
+            "uri": "/build/lib/require_6da8be3.js",
+            "type": "js"
+        },
+        "build/lib/zepto.js": {
+            "uri": "/build/lib/zepto_948701f.js",
+            "type": "js"
+        },
+        "build/lib/zepto.touchSwipe.js": {
+            "uri": "/build/lib/zepto.touchSwipe_a42847b.js",
+            "type": "js"
+        },
+        "build/module/api.js": {
+            "uri": "/build/module/api_e75c6e2.js",
+            "type": "js"
+        },
+        "build/module/module.server.js": {
+            "uri": "/build/module/module.server_bfc1a34.js",
+            "type": "js"
+        },
+        "build/module/module.tool.js": {
+            "uri": "/build/module/module.tool_6270143.js",
+            "type": "js"
+        },
+        "css/css/basic.css": {
+            "uri": "/build/css/css/css/basic_7e510a5.css",
+            "type": "css"
+        },
+        "css/css/frozen.css": {
+            "uri": "/build/css/css/css/frozen_9e4fa1a.css",
+            "type": "css"
+        },
+        "css/layout.css": {
+            "uri": "/build/css/css/layout_53f5ec2.css",
+            "type": "css"
+        },
+        "css/main.css": {
+            "uri": "/build/css/css/main_4bd4ee6.css",
+            "type": "css"
+        },
+        "fis-conf.js": {
+            "uri": "/fis-conf_2636ee7.js",
+            "type": "js"
+        },
+        "js/lib/zepto.js": {
+            "uri": "/js/lib/zepto_948701f.js",
+            "type": "js"
+        },
+        "js/lib/frozen.js": {
+            "uri": "/js/lib/frozen_7c0b3e5.js",
+            "type": "js"
+        },
+        "js/lib/require.js": {
+            "uri": "/js/lib/require_6da8be3.js",
+            "type": "js"
+        },
+        "js/app.js": {
+            "uri": "/js/app_e7a50e1.js",
+            "type": "js"
+        },
+        "js/app - 副本.js": {
+            "uri": "/js/app - 副本_758ba60.js",
+            "type": "js"
+        },
+        "js/controller/detils/Index - 副本.js": {
+            "uri": "/js/controller/detils/Index - 副本_acb6a6c.js",
+            "type": "js"
+        },
+        "js/controller/detils/Index.js": {
+            "uri": "/js/controller/detils/Index_c19f18b.js",
+            "type": "js"
+        },
+        "js/controller/index/Index.js": {
+            "uri": "/js/controller/index/Index_ef7d91d.js",
+            "type": "js"
+        },
+        "js/lib/artTemplate/template-debug.js": {
+            "uri": "/js/lib/artTemplate/template-debug_cec9b3a.js",
+            "type": "js"
+        },
+        "js/lib/artTemplate/template-native-debug.js": {
+            "uri": "/js/lib/artTemplate/template-native-debug_b33b7a4.js",
+            "type": "js"
+        },
+        "js/lib/artTemplate/template-native.js": {
+            "uri": "/js/lib/artTemplate/template-native_c499d00.js",
+            "type": "js"
+        },
+        "js/lib/artTemplate/template.js": {
+            "uri": "/js/lib/artTemplate/template_dd622e5.js",
+            "type": "js"
+        },
+        "js/lib/zepto.touchSwipe.js": {
+            "uri": "/js/lib/zepto.touchSwipe_a42847b.js",
+            "type": "js"
+        },
+        "js/module/api.js": {
+            "uri": "/js/module/api_e75c6e2.js",
+            "type": "js"
+        },
+        "js/module/module.server.js": {
+            "uri": "/js/module/module.server_bfc1a34.js",
+            "type": "js"
+        },
+        "js/module/module.tool.js": {
+            "uri": "/js/module/module.tool_6270143.js",
+            "type": "js"
+        },
+        "r.js": {
+            "uri": "/r_9c3d7dc.js",
+            "type": "js"
+        },
+        "test/dynamic.js": {
+            "uri": "/test/dynamic_cd7c378.js",
+            "type": "js"
+        }
+    },
+    "pkg": {}
+}
