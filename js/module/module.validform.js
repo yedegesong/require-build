@@ -69,6 +69,7 @@ define(function() {
 
         //验证手机号码
         if ($(this).hasClass(__.config.m.cls)) {
+          console.log(__.dataType.m.test($(this).val()))
           if (!__.dataType.m.test($(this).val())) {
             __.tip(__.config.m.tip);
             key = false;
@@ -81,9 +82,9 @@ define(function() {
         if ($(this).hasClass(__.config.n.cls)) {
           if (!__.dataType.n.test($(this).val())) {
             __.tip(__.config.n.tip);
-            key = false;
-            this.focus();
-            return false;
+             key = false;
+             this.focus();
+             return false;
           };
         };
 
