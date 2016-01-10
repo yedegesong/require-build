@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>表单模块</title>
+    <script type="text/javascript" src="../js/lib/require.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <link rel="stylesheet" href="../css/css/frozen.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<header class="ui-header ui-border-b header">
+    <h1>表单验证模块</h1>
+</header>
+<div class="ui-footer">
+    <a href="javascript:;" class="btn-free">提交报名</a>
+</div>
+<section class="ui-container">
+<div class="ui-tips ui-tips-info">
+                <i></i><span>表单验证模块</span>
+            </div>
+            <div class="ui-form ui-border-t mod-from"><!-- 
+                <div class="ui-form-item ui-form-item-pure ui-border-tb">
+                   <input type="text" placeholder="您的称呼erer" class="valid-null">
+               </div>
+               <div class="ui-form-item ui-form-item-pure ui-border-tb">
+                   <input type="text" placeholder="您手机号码" class="valid-null valid-phone">
+               </div>
+                <div class="ui-form-item ui-form-item-pure ui-border-tb">
+                   <input type="text" placeholder="您的年龄" class="valid-null valid-n">
+               </div> -->
+               <div class="ui-form-item ui-form-item-pure ui-border-tb">
+                   <input type="text" placeholder="您的邮箱" class="valid-null valid-email">
+               </div>
+                <div class="ui-border-t" style="margin-top:.48rem;">
+                        <div class="ui-form-item ui-form-item-radio ui-border-b">
+                            <label class="ui-radio" for="radio">
+                                <input type="radio" name="sex" class="valid-null" value="1" tip="请选择性别">
+                            </label>
+                            <p>男</p>
+                        </div>
+                        <div class="ui-form-item ui-form-item-radio ui-border-b">
+                            
+                            <label class="ui-radio" for="radio">
+                                <input type="radio" name="sex" value="2">
+                            </label>
+                            <p>女</p>
+                        </div>
+                </div>
+                <div class="ui-form-item-select ui-form-item-pure ui-border-tb">
+                    <div class="ui-select">
+                        <select class="valid-null" tip="请选择规划户型">
+                            <option value=" ">规划户型</option>
+                            <option value="100">啊啊</option>
+                        </select>
+                    </div>
+                 </div> 
+                 <div class="demo-item">
+                    <p class="demo-desc">请选择购物模式</p>
+                    <div class="demo-block">
+                        <div class="ui-form ui-border-t">
+                                <div class="ui-form-item ui-form-item-checkbox ui-border-b">
+                                    <label class="ui-checkbox">
+                                        <input type="checkbox" name="gw" class="valid-null" value='0' tip="请选择购物方式">
+                                    </label>
+                                    <p>淘宝</p>
+                                </div>
+                                <div class="ui-form-item ui-form-item-checkbox ui-border-b">
+                                    <label class="ui-checkbox">
+                                        <input type="checkbox" name="gw" value='1'>
+                                    </label>
+                                    <p>京东</p>
+                                </div>
+                        </div>
+                    </div>
+    </div>
+    </div>
+</section>
+<script type="text/javascript">
+        require(['controller/form/Index'], function() {
+
+        });
+    </script>
+</body>
+</html>

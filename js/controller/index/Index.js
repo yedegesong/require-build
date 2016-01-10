@@ -1,3 +1,5 @@
 define(['zepto','frozen','zepto.touchSwipe'],function ($) {
-   console.log($)
+  $(".btn-free").on("click",function(){
+  	console.log('a')
+  })
 });
