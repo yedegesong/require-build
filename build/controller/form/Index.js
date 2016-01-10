@@ -4640,151 +4640,119 @@ define("zepto", (function (global) {
 
 define("zepto.touchSwipe", ["zepto"], function(){});
 
-//服务模块
-define('module/module.server',[],function() {
-var server = {};
-server.resource = function(url, param, action) {
-  return new Ajaxfactory(url, param, action);
-}; //共用服务块
-function Ajaxfactory(url, param, action) {
-  this.url = url;
-  this.param = param;
-  this.action = action;
-  //返回promise对象用于外部调用
-  return this.getData();
-};
-Ajaxfactory.prototype.getData = function() {
-  var me = this;
-  var LoginEl = null;
-  var TipEl = null;
-  //创建延迟对象
-  var dtd = $.Deferred();
-  $.ajax({
-    type: me.action,
-    url: me.url,
-    data: me.param,
-    dataType: 'json',
-    timeout: 30000,
-    success: function(data) {
-      //后台状态返回0 延迟加载失败
-      if (data.status == 0) {
-        dtd.reject(data);
-        LoginEl = $.loading({
-          content: '请检查网络...',
-        })
-      } else {
-        //后台状态返回1 延迟加载成功
-        dtd.resolve(data);
-        LoginEl.loading("hide");
+define('module/module.validform',[],function() {
+  var __ = {};
+  __.el = null;
+  __.dataType = {
+      sn: /[\w\W]+/,
+      "*6-16": /^[\w\W]{6,16}$/,
+      n: /^\d+$/,
+      "n6-16": /^\d{6,16}$/,
+      s: /^[\-\u9FA5\uf900-\ufa2d\w\.\s]+$/,
+      "s6-18": /^[\u4E00-\u9FA5\uf900-\ufa2d\w\.\s]{6,18}$/,
+      p: /^[0-9]{6}$/,
+      m: /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}$|17[0-9]{9}$/,
+      e: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
+      url: /^(\w+:\/\/)?\w+(\.\w+)+.*$/
+    };
+    __.config = {
+      s: {
+        cls: 'valid-null',
+        dataType:'*',
+        tip: '不能为空'
+      },
+      m: {
+        cls: 'valid-phone',
+        tip: '请输入正确的手机格式'
+      },
+      n: {
+        cls: 'valid-n',
+        tip: '只能为数字'
+      },
+      e: {
+        cls: 'valid-email',
+        tip: '请输入正确的邮箱'
       }
-    },
-    beforeSend: function(data) {
-      LoginEl = $.loading({
-        content: '加载中...',
+    };
+    __.str = function(str) {
+      return str.replace(/\s/g, "");
+    }
+
+    __.tip = function(tipsText) {
+      __.el= $.tips({
+        content: tipsText,
+        stayTime: 2000,
+        type: "info"
       })
-    },
-    error: function(xhr, type) {
-      LoginEl.loading("hide");
-      TipEl = $.tips({
-        content: '链接异常',
-        stayTime: 10000,
-        type: "warn"
+    }
+    __.activeForm = function(formDom) {
+      var key = true;
+      var _form = $(formDom);
+      var _input = _form.find('.' + __.config.s.cls);
+      _input.each(function(i, v) {
+        //判断文本框和下拉框是否为空
+        if (__.str($(this).val()).length <= 0) {
+          var tips = $(this).attr('placeholder') === null ? 'tip' : 'placeholder';
+          __.tip('请输入' + $(this).attr(tips));
+          key = false;
+          this.focus();
+          return false;
+        }
+        //判断单选按钮或者复选框按钮是否为空
+        if ($(this).attr('type') == 'radio' || $(this).attr('type') == 'checkbox') {
+          var radioName = $(this).attr('name');
+          var value = $("input[name='" + radioName + "']:checked").val();
+          if (value == undefined) {
+            key = false;
+            __.tip($(this).attr('tip'));
+            return false;  
+          }
+        } 
+
+        //验证手机号码
+        if ($(this).hasClass(__.config.m.cls)) {
+          console.log(__.dataType.m.test($(this).val()))
+          if (!__.dataType.m.test($(this).val())) {
+            __.tip(__.config.m.tip);
+            key = false;
+            this.focus();
+            return false;
+          };
+        };
+
+        //验证只能为数字
+        if ($(this).hasClass(__.config.n.cls)) {
+          if (!__.dataType.n.test($(this).val())) {
+            __.tip(__.config.n.tip);
+             key = false;
+             this.focus();
+             return false;
+          };
+        };
+
+        //验证邮箱
+        if ($(this).hasClass(__.config.e.cls)) {
+          if (!__.dataType.e.test($(this).val())) {
+            __.tip(__.config.e.tip);
+            key = false;
+            this.focus();
+            return false;
+          };
+        };
       });
-    }
-  });
-  /*--
-        返回promise的作用是防止外部修改全局dtd 延迟对象的执行状态。
-        return dtd;
-    --*/ //返回promise对象
-  return dtd.promise();
-};
-
-//分页加载模块
-function Pagefactory(domId, url, param, action, callbacks) {
-  this.domId = domId;
-  this.url = url;
-  this.param = param;
-  this.action = action;
-  this.callbacks = callbacks;
-  this.getData();
-};
-Pagefactory.prototype.getData = function() {
-  var me = this;
-  var tel = '<div class="ui-loading-wrap">' +
-    '<p>正在加载中...</p>' +
-    '<i class="ui-loading"></i>' +
-    '</div>';
-  $.ajax({
-    type: me.action,
-    url: me.url,
-    data: me.param,
-    dataType: 'json',
-    timeout: 30000,
-    success: function(data) {
-      me.data = data;
-      me.callbacks(me.data);
-      $(me.domId).find(".ui-loading-wrap").remove();
-    },
-    beforeSend: function(data) {
-      $(me.domId).append(tel);
-    },
-    error: function(xhr, type) {
-
-    }
-  });
-};
-
-server.cookie = function(name, value, options) {
-
-  if (typeof value == 'undefined') {
-    return $.fn.cookie(name);
-  } else {
-
-    var params = {
-      path: '/',
-      domain: 'bzbl.com'
-    };
-
-    if (typeof options == 'object') {
-      options['path'] = params['path'];
-      options['domain'] = params['domain'];
-    } else {
-      options = params;
-    };
-
-    $.fn.cookie(name, value, options)
-  }
-
-};
-
-server.checkLogin = function(redirect) {
-
-  if (window.userinfo.isGuest == 1) {
-    if (typeof redirect == 'undefined') {
-      redirect = document.URL;
-    };
-
-    if (!redirect) {
-      redirect = api.home();
-    };
-
-    window.location.href = api.urls.login + "?redirect=" + redirect;
-    return false;
-
+      return key;
   };
-
-  return true;
-}
-
-return server;
+  return __;
 });
-define('controller/index/Index',['zepto','frozen','zepto.touchSwipe','../../module/module.server'],function ($,f,z,server) {
-   server.resource('http://bbs.fzbm.com/api/1/focus').then(function(data){
-   	$.each(data.data,function(v,n){
-   		$("#list").append("<li>"+n.title+"</li>")
-   	})
-   	
-    },function(data){
-        console.log('请检查网络')
-    })
+define('controller/form/Index',['zepto','frozen','zepto.touchSwipe','../../module/module.validform'],function ($,f,z,__) {
+   
+  $(".btn-free").on('click',function(){
+  		if(__.activeForm('.ui-form')){
+  			$('.ui-tips span').html('您通过验证');
+
+  		}else{
+  			console.log('我没通过验证')
+  		}
+  })
+  
 });

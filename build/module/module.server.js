@@ -1,23 +1,22 @@
 //服务模块
+define(function() {
 var server = {};
-server.resource = function(url, param, action, callbacks) {
-  return new Ajaxfactory(url, param, action, callbacks);
-};
-//分页服务模块
-server.pageResource = function(domId, url, param, action, callbacks) {
-  return new Pagefactory(domId, url, param, action, callbacks);
-};
-//共用服务块
-function Ajaxfactory(url, param, action, callbacks) {
+server.resource = function(url, param, action) {
+  return new Ajaxfactory(url, param, action);
+}; //共用服务块
+function Ajaxfactory(url, param, action) {
   this.url = url;
   this.param = param;
   this.action = action;
-  this.callbacks = callbacks;
-  this.getData();
+  //返回promise对象用于外部调用
+  return this.getData();
 };
 Ajaxfactory.prototype.getData = function() {
   var me = this;
-  var LoginEl, TipEl;
+  var LoginEl = null;
+  var TipEl = null;
+  //创建延迟对象
+  var dtd = $.Deferred();
   $.ajax({
     type: me.action,
     url: me.url,
@@ -25,9 +24,17 @@ Ajaxfactory.prototype.getData = function() {
     dataType: 'json',
     timeout: 30000,
     success: function(data) {
-      me.data = data;
-      me.callbacks(me.data);
-      LoginEl.loading("hide");
+      //后台状态返回0 延迟加载失败
+      if (data.status == 0) {
+        dtd.reject(data);
+        LoginEl = $.loading({
+          content: '请检查网络...',
+        })
+      } else {
+        //后台状态返回1 延迟加载成功
+        dtd.resolve(data);
+        LoginEl.loading("hide");
+      }
     },
     beforeSend: function(data) {
       LoginEl = $.loading({
@@ -42,8 +49,14 @@ Ajaxfactory.prototype.getData = function() {
         type: "warn"
       });
     }
-  })
+  });
+  /*--
+        返回promise的作用是防止外部修改全局dtd 延迟对象的执行状态。
+        return dtd;
+    --*/ //返回promise对象
+  return dtd.promise();
 };
+
 //分页加载模块
 function Pagefactory(domId, url, param, action, callbacks) {
   this.domId = domId;
@@ -121,4 +134,5 @@ server.checkLogin = function(redirect) {
   return true;
 }
 
-exports = server;
+return server;
+})

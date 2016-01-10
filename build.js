@@ -21,6 +21,9 @@
         },
         {
              name: './controller/detils/Index'
+        },
+        {
+             name: './controller/form/Index'
         }
     ]
 })
