@@ -18,8 +18,21 @@
 <section class="ui-container">
     <a href="detils.html">我是详情页</a>
     <ul id="list"></ul>
+    <button id="tj">添加</button>
+    <button id="gx">更新</button>
+    <button id="get">获取</button>
 </section>
-     <script type="text/javascript">
+<script type="text/javascript">
+
+    function getUnixTime(dateStr){
+        var newstr = dateStr.replace(/-/g, '/');
+        var date   = new Date(newstr);
+        //let time_str = date.getTime().toString();
+        return date.getTime();
+    }
+    console.log(getUnixTime('2016-2-10'))
+</script>
+<script type="text/javascript">
         require(['controller/index/Index'], function() {
 
         });
