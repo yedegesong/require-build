@@ -1,0 +1,11 @@
+{
+	"date":"2016-4-13",
+	"adv_id":"1",
+    "data":[
+        {"signDay":16,"tip":"福州温泉公园1","state":1},
+        {"signDay":18,"tip":"福州温泉公园2","state":1},
+        {"signDay":2,"tip":"福州森林公园","state":0},
+        {"signDay":4,"tip":"福州宝龙广场","state":-1},
+        {"signDay":20,"tip":"福州万达广场","state":-1}
+    ]
+}

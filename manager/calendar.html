@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>require打包</title>
+    <script type="text/javascript" src="../js/lib/jquery-1.11.2.min.js"></script>
+     <script type="text/javascript" src="../js/lib/require.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <link rel="stylesheet" href="../css/css/frozen.css">
+	<link rel="stylesheet" type="text/css" href="/css/canlendar.css"/>
+	<script type="text/javascript">
+		//小型封装AJAX
+		window.smallServer = (function($){
+			return smallServer = function(action,url,param){
+				var dtd = $.Deferred();
+				$.ajax({
+				    type: 'GET',
+				    url: url,
+				    data: param ? {} : param,
+				    dataType: 'json',
+				    timeout: 30000,
+				    success: function(data) {
+				    	dtd.resolve(data);
+				    },
+				    beforeSend: function(data) {
+				     
+				    },
+				    error: function(xhr, type) {
+				     
+				    }
+				  });
+				return dtd.promise();
+			}
+		})(jQuery);
+	</script>
+</head>
+<body>
+<header class="ui-header ui-border-b header">
+    <h1>日期排期</h1>
+</header>
+<section class="ui-container ui-center">
+	<h3>&yen;</h3>
+    <div style="width:400px;height:300px;" id="calendar">
+</section>
+<script type="text/javascript">
+	var a = 1;
+	function b(){
+		console.log(window.a);
+		var a = 2;
+		console.log(a)
+	}
+	b();
+	console.log(a)
+</script>
+<script type="text/javascript">
+        require(['controller/calendar/Index'], function() {
+
+        });
+    </script>
+</body>
+</html>

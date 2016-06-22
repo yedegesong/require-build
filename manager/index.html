@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>require打包</title>
+    <script type="text/javascript" src="../js/lib/require.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <link rel="stylesheet" href="../css/css/frozen.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<header class="ui-header ui-border-b header">
+    <h1>首页</h1>
+</header>
+<section class="ui-container">
+    <a href="detils.html">我是详情页</a>
+    <ul id="list"></ul>
+    <button id="tj">添加</button>
+    <button id="gx">更新</button>
+    <button id="get">获取</button>
+</section>
+<script type="text/javascript">
+
+    function getUnixTime(dateStr){
+        var newstr = dateStr.replace(/-/g, '/');
+        var date   = new Date(newstr);
+        //let time_str = date.getTime().toString();
+        return date.getTime();
+    }
+    console.log(getUnixTime('2016-2-10'))
+</script>
+<script type="text/javascript">
+        require(['controller/index/Index'], function() {
+
+        });
+    </script>
+</body>
+</html>
